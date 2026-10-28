@@ -152,6 +152,10 @@ kbd { font-family: inherit; font-size: 0.74rem; padding: 1px 5px; border: 1px so
         <div class="seg langs"><button data-lang="fr">Français</button><button data-lang="de">Deutsch</button></div>
       </div>
       <div>
+        <h3 data-i18n="h_notation">Nom des notes</h3>
+        <div class="seg" id="notations"><button data-n="letters">C D E</button><button data-n="solfege">Do Ré Mi</button></div>
+      </div>
+      <div>
         <h3 data-i18n="h_level">Niveau</h3>
         <div class="levels" id="levels">
           <button data-l="0"><b><span data-i18n="lvl0">Débutant</span> <span class="dots"><i class="on"></i><i></i><i></i></span></b><span data-i18n="lvl0_d">Une main, mélodie seule. Vitesse 60 %. Le morceau attend vos notes.</span></button>
@@ -182,7 +186,7 @@ kbd { font-family: inherit; font-size: 0.74rem; padding: 1px 5px; border: 1px so
       </div>
       <div style="display:grid;gap:10px">
         <label class="check"><input type="checkbox" id="optWait"> <span data-i18n="opt_wait">Attendre que je joue la bonne note</span></label>
-        <label class="check"><input type="checkbox" id="optNames" checked> <span data-i18n="opt_names">Afficher le nom des notes (Do, Ré, Mi…)</span></label>
+        <label class="check"><input type="checkbox" id="optNames" checked> <span data-i18n="opt_names">Afficher le nom des notes</span></label>
       </div>
       <p class="note"><span data-i18n-html="kb_help"></span> <span id="kbRange"></span></p>
     </div>
@@ -275,7 +279,7 @@ kbd { font-family: inherit; font-size: 0.74rem; padding: 1px 5px; border: 1px so
       <div><b data-i18n="tip_best_b">Meilleurs résultats</b><span data-i18n="tip_best">Un enregistrement de piano seul donne une partition propre. Avec chant, batterie et guitare, la détection ajoute des notes parasites : préférez alors le niveau Débutant.</span></div>
       <div><b data-i18n="tip_midi_b">Un fichier MIDI existe ?</b><span data-i18n="tip_midi">C'est la source la plus fidèle : la partition est exacte et les deux mains sont séparées.</span></div>
     </div>
-    <p class="fine" data-i18n="fine">Détection des notes : modèle Basic Pitch de Spotify (licence Apache 2.0), exécuté dans votre navigateur. Vos morceaux sont gardés sur cet appareil ; l'enregistrement original n'est disponible que pendant la séance où vous l'importez.</p>
+    <p class="fine" data-i18n="fine">Détection des notes : modèle Basic Pitch de Spotify (licence Apache 2.0), exécuté dans votre navigateur. Vos morceaux sont gardés sur cet appareil ; l'enregistrement original n'est disponible que pendant la séance où vous l'importez. Son de piano : Salamander Grand Piano (Alexander Holm, CC BY 3.0).</p>
   </div>
 </section>
 
@@ -289,14 +293,14 @@ const I18N = {
   fr: {
     songs: 'Morceaux', play_title: 'Lecture (Espace)', restart: 'Recommencer', settings: 'Réglages', seek: 'Position dans le morceau',
     rotate: 'Tournez le téléphone à l\'horizontale pour un clavier plus large.',
-    h_lang: 'Langue', h_level: 'Niveau', lvl0: 'Débutant', lvl1: 'Intermédiaire', lvl2: 'Expert',
+    h_lang: 'Langue', h_notation: 'Nom des notes', h_level: 'Niveau', lvl0: 'Débutant', lvl1: 'Intermédiaire', lvl2: 'Expert',
     lvl0_d: 'Une main, mélodie seule. Vitesse 60 %. Le morceau attend vos notes.',
     lvl1_d: 'Mélodie et basse, deux mains. Vitesse 80 %. Le morceau attend vos notes.',
     lvl2_d: 'Toutes les notes, tempo réel, notes ratées comptées.',
     h_hand: 'Main jouée', hand_R: 'Droite', hand_L: 'Gauche', hand_B: 'Les deux',
     h_mode: 'Mode', mode_play: 'Jouer', mode_watch: 'Regarder', h_speed: 'Vitesse', h_track: 'Piste à jouer',
     h_sound: 'Son', snd_karaoke: 'Karaoké', snd_karaoke_t: 'La chanson sans la piste que vous jouez', snd_orig: 'Chanson complète', snd_synth: 'Piano seul',
-    opt_wait: 'Attendre que je joue la bonne note', opt_names: 'Afficher le nom des notes (Do, Ré, Mi…)',
+    opt_wait: 'Attendre que je joue la bonne note', opt_names: 'Afficher le nom des notes',
     kb_help: 'Jouez en touchant le clavier à l\'écran, avec un clavier MIDI branché, ou avec le clavier de l\'ordinateur : rangée du milieu <kbd>A</kbd><kbd>S</kbd><kbd>D</kbd><kbd>F</kbd>… (QWERTY) ou <kbd>Q</kbd><kbd>S</kbd><kbd>D</kbd><kbd>F</kbd>… (AZERTY) pour les touches blanches, rangée du dessus pour les noires. <kbd>Z</kbd>/<kbd>X</kbd> (QWERTY) changent d\'octave.',
     kb_range: 'Actuellement : {a} à {b}.',
     res_acc: 'précision', res_hits: 'notes justes', res_best: 'meilleure série', res_again: 'Rejouer', res_next: 'Niveau suivant',
@@ -342,14 +346,14 @@ const I18N = {
   de: {
     songs: 'Stücke', play_title: 'Wiedergabe (Leertaste)', restart: 'Neu starten', settings: 'Einstellungen', seek: 'Position im Stück',
     rotate: 'Dreh dein Handy ins Querformat, dann wird die Tastatur breiter.',
-    h_lang: 'Sprache', h_level: 'Schwierigkeit', lvl0: 'Anfänger', lvl1: 'Fortgeschritten', lvl2: 'Experte',
+    h_lang: 'Sprache', h_notation: 'Notennamen', h_level: 'Schwierigkeit', lvl0: 'Anfänger', lvl1: 'Fortgeschritten', lvl2: 'Experte',
     lvl0_d: 'Eine Hand, nur die Melodie. Tempo 60 %. Das Stück wartet auf deine Töne.',
     lvl1_d: 'Melodie und Bass, beide Hände. Tempo 80 %. Das Stück wartet auf deine Töne.',
     lvl2_d: 'Alle Töne, Originaltempo, verpasste Töne zählen.',
     h_hand: 'Gespielte Hand', hand_R: 'Rechts', hand_L: 'Links', hand_B: 'Beide',
     h_mode: 'Modus', mode_play: 'Spielen', mode_watch: 'Zuschauen', h_speed: 'Tempo', h_track: 'Gespielte Spur',
     h_sound: 'Klang', snd_karaoke: 'Karaoke', snd_karaoke_t: 'Das Lied ohne die Spur, die du spielst', snd_orig: 'Ganzes Lied', snd_synth: 'Nur Klavier',
-    opt_wait: 'Warten, bis ich den richtigen Ton spiele', opt_names: 'Notennamen anzeigen (C, D, E …)',
+    opt_wait: 'Warten, bis ich den richtigen Ton spiele', opt_names: 'Notennamen anzeigen',
     kb_help: 'Spiel auf der Bildschirmtastatur, mit einem angeschlossenen MIDI-Keyboard oder mit der Computertastatur: mittlere Reihe <kbd>A</kbd><kbd>S</kbd><kbd>D</kbd><kbd>F</kbd> … für die weißen Tasten, obere Reihe für die schwarzen. <kbd>Y</kbd>/<kbd>X</kbd> (QWERTZ) wechseln die Oktave.',
     kb_range: 'Aktuell: {a} bis {b}.',
     res_acc: 'Genauigkeit', res_hits: 'richtige Töne', res_best: 'beste Serie', res_again: 'Nochmal', res_next: 'Nächste Stufe',
@@ -362,7 +366,7 @@ const I18N = {
     tip_link_b: 'Ein YouTube- oder Web-Link?', tip_link: 'Diese Seite kann nichts von einem Link herunterladen. Speichere die Audio- oder Videodatei zuerst auf deinem Handy oder Computer und importiere sie dann hier.',
     tip_best_b: 'Beste Ergebnisse', tip_best: 'Eine reine Klavieraufnahme ergibt saubere Noten. Mit Gesang, Schlagzeug und Gitarre erkennt die Analyse zusätzliche Störtöne: Nimm dann am besten die Stufe Anfänger.',
     tip_midi_b: 'Gibt es eine MIDI-Datei?', tip_midi: 'Das ist die genaueste Quelle: Die Noten sind exakt und die beiden Hände sind getrennt.',
-    fine: 'Tonerkennung: Basic-Pitch-Modell von Spotify (Apache-2.0-Lizenz), läuft in deinem Browser. Deine Stücke bleiben auf diesem Gerät; die Originalaufnahme ist nur in der Sitzung verfügbar, in der du sie importierst.',
+    fine: 'Tonerkennung: Basic-Pitch-Modell von Spotify (Apache-2.0-Lizenz), läuft in deinem Browser. Deine Stücke bleiben auf diesem Gerät; die Originalaufnahme ist nur in der Sitzung verfügbar, in der du sie importierst. Klavierklang: Salamander Grand Piano (Alexander Holm, CC BY 3.0).',
     hud_mode: 'Modus', hud_hits: 'Richtig', hud_wrong: 'Falsch', hud_missed: 'Verpasst', hud_streak: 'Serie', wait_play: 'Spiel: ', chord: 'Akkord: ',
     trk_arr: 'Klavierarrangement', trk_piano: 'Klavier aus dem Stück', trk_vocals: 'Gesang',
     why_arr: 'Aus der gesungenen Melodie und den Akkorden gesetzt: nur Melodie bei Anfänger, mit dem Akkord-Bass bei Fortgeschritten, mit gebrochenen Akkorden bei Experte.',
@@ -431,11 +435,15 @@ const C = {};
 ['ink','panel','raise','line','fg','muted','rh','lh','auto','gold','bad','key','keyshade'].forEach(k => C[k] = css.getPropertyValue('--' + k).trim());
 
 /* ---------- Music helpers ---------- */
-const NOTE_NAMES = { fr: ['Do','Do♯','Ré','Ré♯','Mi','Fa','Fa♯','Sol','Sol♯','La','La♯','Si'], de: ['C','Cis','D','Dis','E','F','Fis','G','Gis','A','B','H'] };
+const NOTE_NAMES = { fr: ['Do','Do♯','Ré','Ré♯','Mi','Fa','Fa♯','Sol','Sol♯','La','La♯','Si'], de: ['C','Cis','D','Dis','E','F','Fis','G','Gis','A','B','H'], en: ['C','C♯','D','D♯','E','F','F♯','G','G♯','A','A♯','B'] };
+// Note names: letters (C D E, German letters in German) or solfège (Do Ré Mi)
+let NOTATION = 'letters';
+try { NOTATION = localStorage.getItem('sillage.notation') || 'letters'; } catch (e) {}
+const nameSet = () => NOTATION === 'solfege' ? 'fr' : LANG === 'de' ? 'de' : 'en';
 const isBlack = p => [1,3,6,8,10].includes(p % 12);
-const noteName = p => NOTE_NAMES[LANG][p % 12];
-const noteShort = p => LANG === 'de' ? noteName(p).replace(/is$/, '♯') : NOTE_NAMES.fr[p % 12].slice(0, 2); // for narrow notes
-const noteNameOct = p => noteName(p) + (Math.floor(p / 12) - (LANG === 'fr' ? 2 : 1)); // middle C = Do3 in French, C4 in German
+const noteName = p => NOTE_NAMES[nameSet()][p % 12];
+const noteShort = p => nameSet() === 'fr' ? NOTE_NAMES.fr[p % 12].slice(0, 2) : noteName(p).replace(/is$/, '♯'); // for narrow notes
+const noteNameOct = p => noteName(p) + (Math.floor(p / 12) - (nameSet() === 'fr' ? 2 : 1)); // middle C = Do3 in solfège, C4 with letters
 const fmtTime = s => { s = Math.max(0, s); return Math.floor(s / 60) + ':' + String(Math.floor(s % 60)).padStart(2, '0'); };
 const LEVEL_SPEED = [0.6, 0.8, 1];
 
@@ -493,8 +501,39 @@ function ensureAC() {
   if (ac.state === 'suspended') ac.resume();
   return ac;
 }
+// Real piano: Salamander Grand Piano (Alexander Holm, CC BY 3.0), one sample every minor third (A0…C8), pitched for the notes between.
+// Decoded on an offline context so it loads before the first tap; the synth below plays until it is ready.
+const PIANO = new Map(); // sample pitch -> AudioBuffer
+(() => {
+  const OAC = window.OfflineAudioContext || window.webkitOfflineAudioContext;
+  if (!OAC) return;
+  const dec = new OAC(2, 1, 44100), NAMES = { 0: 'C', 3: 'Ds', 6: 'Fs', 9: 'A' };
+  for (let p = 21; p <= 108; p += 3) fetch('piano/' + NAMES[p % 12] + (Math.floor(p / 12) - 1) + '.mp3')
+    .then(r => r.ok ? r.arrayBuffer() : Promise.reject())
+    .then(b => new Promise((res, rej) => { const q = dec.decodeAudioData(b, res, rej); if (q && q.then) q.then(res, rej); }))
+    .then(buf => PIANO.set(p, buf)).catch(() => {});
+})();
 function voice(p, vel = 0.7) {
   ensureAC();
+  const sp = 21 + 3 * Math.max(0, Math.min(29, Math.round((p - 21) / 3))), buf = PIANO.get(sp);
+  if (!buf) return synthVoice(p, vel);
+  const now = ac.currentTime, src = ac.createBufferSource(), lp = ac.createBiquadFilter(), g = ac.createGain();
+  src.buffer = buf; src.playbackRate.value = Math.pow(2, (p - sp) / 12);
+  lp.type = 'lowpass'; lp.frequency.value = 1500 + 16000 * vel * vel; // soft notes sound duller, as on a real piano
+  g.gain.value = 0.6 * (0.2 + 0.8 * vel);
+  src.connect(lp); lp.connect(g); g.connect(master);
+  src.start(now);
+  let ended = false;
+  const release = (at) => {
+    if (ended) return; ended = true;
+    at = Math.max(at, ac.currentTime);
+    g.gain.cancelScheduledValues(at); g.gain.setValueAtTime(g.gain.value, at); g.gain.setTargetAtTime(0, at, 0.12);
+    src.stop(at + 1);
+  };
+  setTimeout(() => release(ac.currentTime), 9000);
+  return { release };
+}
+function synthVoice(p, vel) {
   const f = 440 * Math.pow(2, (p - 69) / 12), now = ac.currentTime;
   const g = ac.createGain(), lp = ac.createBiquadFilter();
   lp.type = 'lowpass'; lp.frequency.setValueAtTime(Math.min(16000, f * 9), now); lp.frequency.setTargetAtTime(f * 2.5, now, 0.35);
@@ -702,8 +741,8 @@ function playedTracks() {
 }
 
 /* ---------- Piano arrangement from melody + beats + chords ---------- */
-const CHORD_ROOT = { fr: ['Do', 'Do♯', 'Ré', 'Mi♭', 'Mi', 'Fa', 'Fa♯', 'Sol', 'La♭', 'La', 'Si♭', 'Si'], de: ['C', 'Cis', 'D', 'Es', 'E', 'F', 'Fis', 'G', 'As', 'A', 'B', 'H'] };
-const chordLabel = c => CHORD_ROOT[LANG][c.r] + (c.q === 'min' ? 'm' : '');
+const CHORD_ROOT = { fr: ['Do', 'Do♯', 'Ré', 'Mi♭', 'Mi', 'Fa', 'Fa♯', 'Sol', 'La♭', 'La', 'Si♭', 'Si'], de: ['C', 'Cis', 'D', 'Es', 'E', 'F', 'Fis', 'G', 'As', 'A', 'B', 'H'], en: ['C', 'C♯', 'D', 'E♭', 'E', 'F', 'F♯', 'G', 'A♭', 'A', 'B♭', 'B'] };
+const chordLabel = c => CHORD_ROOT[nameSet()][c.r] + (c.q === 'min' ? 'm' : '');
 function chordAt(an, time) {
   const cs = an.chords; let lo = 0, hi = cs.length - 1, found = null;
   while (lo <= hi) { const m = (lo + hi) >> 1; if (cs[m].t0 <= time) { found = cs[m]; lo = m + 1; } else hi = m - 1; }
@@ -1025,7 +1064,7 @@ function keyFill(p, nowMs) {
   return null;
 }
 function draw(nowMs, dt) {
-  if (!chart) return;
+  if (!chart || !geo[chart.lo]) return; // keys not laid out yet (canvas still 0 wide): drawing would throw and stop the loop
   ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
   ctx.fillStyle = C.ink; ctx.fillRect(0, 0, W, H);
   const pps = kbTop / 2.6; // pixels per song-second
@@ -1120,6 +1159,7 @@ function syncSettingsUI() {
   document.querySelectorAll('#levels button').forEach(b => b.setAttribute('aria-pressed', String(+b.dataset.l === settings.level)));
   document.querySelectorAll('#hands button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.h === settings.hands)));
   document.querySelectorAll('#modes button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.m === settings.mode)));
+  document.querySelectorAll('#notations button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.n === NOTATION)));
   const stems = !!song && song.source === 'stems';
   document.querySelectorAll('#sounds button').forEach(b => {
     b.setAttribute('aria-pressed', String(b.dataset.s === settings.sound));
@@ -1210,6 +1250,13 @@ document.querySelectorAll('.langs').forEach(g => g.onclick = e => {
   if (chart) $('kbRange').textContent = T('kb_range', { a: noteNameOct(chart.kbBase), b: noteNameOct(chart.kbBase + 16) });
   if (!$('lib').hidden) renderLib();
 });
+$('notations').onclick = e => {
+  const b = e.target.closest('button'); if (!b) return;
+  NOTATION = b.dataset.n;
+  try { localStorage.setItem('sillage.notation', NOTATION); } catch (er) {}
+  syncSettingsUI(); lastWait = ''; updateWaitHint();
+  if (chart) $('kbRange').textContent = T('kb_range', { a: noteNameOct(chart.kbBase), b: noteNameOct(chart.kbBase + 16) });
+};
 $('leads').onclick = e => { const b = e.target.closest('button'); if (b) { settings.lead = b.dataset.t === song.lead ? null : b.dataset.t; rebuild(); } };
 let seeking = false;
 $('seek').addEventListener('input', e => { seeking = true; const was = playing; setPlaying(false); resetProgress(+e.target.value); $('tCur').textContent = fmtTime(t); seeking = was; });

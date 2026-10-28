@@ -1,6 +1,6 @@
 // Sillage — fonctionnement hors connexion du site publié.
 // Réseau d'abord (pour voir les morceaux ajoutés), copie locale si le téléphone est hors ligne.
-const CACHE = 'sillage-mvsbu6bl';
+const CACHE = 'sillage-mvscbcic';
 const SHELL = ['./', 'index.html', 'library.json', 'manifest.webmanifest', 'icon-192.png', 'model/model.json', 'model/weights.wasm'];
 
 self.addEventListener('install', e => {
