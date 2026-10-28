@@ -1064,7 +1064,7 @@ function keyFill(p, nowMs) {
   return null;
 }
 function draw(nowMs, dt) {
-  if (!chart || !geo[chart.lo]) return; // keys not laid out yet (canvas still 0 wide): drawing would throw and stop the loop
+  if (!chart || !chart.ww) return; // keys not laid out for this chart yet (canvas 0 wide): drawing would throw and stop the loop
   ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
   ctx.fillStyle = C.ink; ctx.fillRect(0, 0, W, H);
   const pps = kbTop / 2.6; // pixels per song-second
