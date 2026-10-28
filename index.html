@@ -1248,11 +1248,11 @@ function openLib(on) {
   $('lib').hidden = !on;
   if (on) { setPlaying(false); renderLib(); if (srv) pollQueue(); }
 }
-let libRender = 0, published = null;
+let libRender = 0;
+// Read again each time: an installed app stays open for days. no-cache = a quick "unchanged?" check
 function loadPublished() {
-  if (!published) published = fetch('library.json', { cache: 'no-cache' })
+  return fetch('library.json', { cache: 'no-cache' })
     .then(r => r.ok ? r.json() : []).then(l => Array.isArray(l) ? l : []).catch(() => []);
-  return published;
 }
 async function renderLib() {
   const token = ++libRender, list = $('libList');
